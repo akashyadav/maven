@@ -15,9 +15,9 @@ A theme is placed to control things through src/theme/theme.js
 
 Follow Instructions
 
-Clone this directory or download zip 
+Download zip or clone https://github.com/akashyadav/maven.git
 
-1. cd {directory}
+1. cd maven-dem0
 2. npm i 
 3. npm run
 

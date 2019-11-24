@@ -8,7 +8,9 @@ let theme = createMuiTheme({
 		
 	},
 	typography: {
-        
+        'body2' : {
+            fontWeight : 'normal'
+        }
     },
     overrides: {
         MuiNativeSelect : {

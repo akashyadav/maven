@@ -40,6 +40,11 @@ const useStyles = makeStyles(theme => ({
   },
   selectOptions : {
     padding: 20
+  },
+  application: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   }
 }));
 
@@ -72,7 +77,10 @@ export const UserCard = () => {
   const [open, setOpen] = React.useState(false);
   const [status, setStatus] = React.useState(10);
 
-  const actions = ["Selected", "In Interview", "Offered", "Joined", "On Hold", "Rejected"];
+  const options = ["Selected", "In Interview", "Offered", "Joined", "On Hold", "Rejected"];
+
+  const actions = ["View Profile", "Screening Response", "Send Messages", "Schedule Interviews", "View Activities"];
+ 
   const handleClick = () => {
     setOpen(true);
   };
@@ -144,7 +152,7 @@ export const UserCard = () => {
                  <Grid container justify="flex-end" alignItems="center"  style={{
                    "padding" : 8
                  }}>
-                   <Grid item>
+                   <Grid item className={classes.application}>
                    <Typography style={{
                          fontWeight: 'normal'
                        }} className={classes.titleIntro} variant="body2"> Application Status</Typography>
@@ -155,7 +163,7 @@ export const UserCard = () => {
                        input={<SelectInput key="1" />}
                        >
                          {
-                           actions.map((action)=>{
+                           options.map((action)=>{
                              return  <option key={`${action}`} className={classes.selectOptions} value={`${action}`}>{action}</option>
                            })
                          }
@@ -167,45 +175,15 @@ export const UserCard = () => {
               <Grid container className={classes.infoSection} >
                <Grid item xs={12}>
                  <Grid container justify="space-around">
-                 
-                    <Grid item xs={1}>
-                      <Typography style={{
-                         fontWeight: 'normal'
-                       }} className={classes.actionInfo} variant="body2"> 
-                     View Profile
-                     </Typography>
-                    </Grid>
-                    <Grid item xs={1}>
-                    <Typography style={{
-                         fontWeight: 'normal'
-                       }} className={classes.actionInfo} variant="body2"> 
-                      Screening Response
-                     </Typography>
-                    </Grid>
-                    <Grid item xs={1}>
-                    <Typography style={{
-                         fontWeight: 'normal'
-                       }} className={classes.actionInfo} variant="body2"> 
-                     Send Messages
-                     </Typography>
-                     
-                    </Grid>
-                    <Grid item xs={1}>
-                    <Typography style={{
-                         fontWeight: 'normal'
-                       }} className={classes.actionInfo} variant="body2"> 
-                      Schedule Interviews
-                     </Typography>
-                    
-                    </Grid>
-                    <Grid item xs={1}>
-                    <Typography style={{
-                         fontWeight: 'normal'
-                       }} className={classes.actionInfo} variant="body2"> 
-                      View Activities
-                     </Typography>
-                     
-                    </Grid>
+                      {
+                           actions.map((action)=>{
+                            return <Grid key={`${action}`} item xs={1}>
+                               <Typography className={classes.actionInfo} variant="body2"> 
+                                {action}
+                              </Typography>
+                            </Grid>
+                           })
+                      }
                   </Grid>
                </Grid>
               </Grid>
