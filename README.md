@@ -19,6 +19,9 @@ Clone this directory or download zip
 2. npm i 
 3. npm run
 
+
+Online demo - https://nifty-raman-cda4c6.netlify.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
