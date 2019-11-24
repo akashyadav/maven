@@ -84,16 +84,16 @@ export const UserCard = () => {
   const handleClick = () => {
     setOpen(true);
   };
-  useEffect(() => {
-    dispatch(getUserData())
-  },[])
+ 
   const [status, setStatus] = React.useState(10);
   const handleChange = event => {
     setStatus(event.target.value);
     handleClick();
   };
   const {userData} = useSelector((state) => ({userData: state.UserData ? state.UserData.userData: {}}));
-
+  useEffect(() => {
+    dispatch(getUserData())
+  },[])
   return (
     <div className={classes.root}>
       <Grid container style={{

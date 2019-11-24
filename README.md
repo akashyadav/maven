@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Directory Structure
+
+
+![Directory Structure](https://ibb.co/gFhFZQQ)
+
 
 ## Available Scripts
 
