@@ -5,9 +5,11 @@ Directory Structure
 ![Directory Structure](https://i.ibb.co/FqCq4cc/filestructure.png)
 
 
-All reducers needs to combined in src/reducers
+All reducers needs to combined in src/reducers.
+
 All resusable components will be there in src/components and each will have their respective action and reducer with them.
-Utilities funtions will be in sr/helpers 
+
+Utilities funtions will be in src/helpers .
 
 A theme is placed to control things through src/theme/theme.js
 
@@ -15,7 +17,7 @@ Follow Instructions
 
 Clone this directory or download zip 
 
-1. cd maven
+1. cd {directory}
 2. npm i 
 3. npm run
 

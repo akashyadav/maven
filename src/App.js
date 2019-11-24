@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {UserCard} from './components/card/usercard';
 import { ThemeProvider } from '@material-ui/styles';

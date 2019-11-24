@@ -1,4 +1,4 @@
-import { useSelector, useDispatch, useReducer } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import React, {useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Grid, Typography} from '@material-ui/core/';
@@ -42,14 +42,7 @@ const useStyles = makeStyles(theme => ({
     padding: 20
   }
 }));
-const styles = makeStyles(theme => ({
-  option: 
-  {
-    border: "1px solid black",
-    borderRadius: "5%",
-    backgroundColor:'lightgrey',
-  },
-}));
+
 const SelectInput = withStyles(theme => ({
   root: {
     'label + &': {
@@ -70,9 +63,6 @@ const SelectInput = withStyles(theme => ({
       background: '#ffffff',
       
     },
-  },
-  option : {
-    background: 'yellow'
   }
 }))(InputBase);
 
@@ -80,20 +70,25 @@ export const UserCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [status, setStatus] = React.useState(10);
 
+  const actions = ["Selected", "In Interview", "Offered", "Joined", "On Hold", "Rejected"];
   const handleClick = () => {
     setOpen(true);
   };
  
-  const [status, setStatus] = React.useState(10);
   const handleChange = event => {
     setStatus(event.target.value);
     handleClick();
   };
+
   const {userData} = useSelector((state) => ({userData: state.UserData ? state.UserData.userData: {}}));
+  
   useEffect(() => {
     dispatch(getUserData())
-  },[])
+  },[dispatch])
+
+
   return (
     <div className={classes.root}>
       <Grid container style={{
@@ -117,12 +112,12 @@ export const UserCard = () => {
                              <Grid item >
                                 <Typography style={{
                                 fontWeight: 'bold'
-                              }} className={classes.titleIntro} variant="span"> {userData.name}</Typography>
+                              }} className={classes.titleIntro} variant="body2"> {userData.name}</Typography>
                               </Grid>
                               <Grid item>
                                 <Grid container justify="space-between">
                                   <Grid item>
-                                    <Typography  className={classes.titleIntro} variant="span"> {userData.username}</Typography>
+                                    <Typography  className={classes.titleIntro} variant="body2"> {userData.username}</Typography>
                                   </Grid>
                                   <Grid item>
                                     <FontAwesomeIcon icon={faArrowAltCircleDown} size='1x' style={{color: '#508f59', marginRight:8}} />
@@ -132,12 +127,12 @@ export const UserCard = () => {
                              <Grid item >
                                <Typography style={{
                                
-                              }} className={classes.titleIntro} variant="span"> {userData.email} | {userData.phone}</Typography>
+                              }} className={classes.titleIntro} variant="body2"> {userData.email} | {userData.phone}</Typography>
                              </Grid>
                               <Grid item >
                              <Typography style={{
                                 fontWeight: 'normal'
-                              }} className={classes.city} variant="span"> {userData.address.city}</Typography>
+                              }} className={classes.city} variant="body2"> {userData.address.city}</Typography>
                             </Grid>
                          </Grid> 
                         }
@@ -152,20 +147,18 @@ export const UserCard = () => {
                    <Grid item>
                    <Typography style={{
                          fontWeight: 'normal'
-                       }} className={classes.titleIntro} variant="span"> Application Status</Typography>
+                       }} className={classes.titleIntro} variant="body2"> Application Status</Typography>
                        <FontAwesomeIcon icon={faCircle} size='1x' style={{color: '#42f569', padding: '0 8px 0 8px'}} />
                     <NativeSelect
                        value={status}
                        onChange={handleChange}
-                       input={<SelectInput />}
-                       selectMenu={styles}
+                       input={<SelectInput key="1" />}
                        >
-                       <option className={classes.selectOptions} value={"Shortlisted"}>Shortlisted</option>
-                       <option className={classes.selectOptions} value={"In Interview"}>In Interview</option>
-                       <option className={classes.selectOptions} value={"Offered"}>Offered</option>
-                       <option className={classes.selectOptions} value={"Joined"}>Joined</option>
-                       <option className={classes.selectOptions} value={"On Hold"}>On Hold</option>
-                       <option className={classes.selectOptions} value={"Rejected"}>Rejected</option>
+                         {
+                           actions.map((action)=>{
+                             return  <option key={`${action}`} className={classes.selectOptions} value={`${action}`}>{action}</option>
+                           })
+                         }
                     </NativeSelect>
                    </Grid>
                 </Grid>
