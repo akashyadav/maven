@@ -17,7 +17,7 @@ Follow Instructions
 
 Download zip or clone https://github.com/akashyadav/maven.git
 
-1. cd maven-dem0
+1. cd maven-demo
 2. npm i 
 3. npm run
 

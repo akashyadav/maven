@@ -5,11 +5,11 @@ import { Grid, Typography} from '@material-ui/core/';
 import { getUserData } from './action';
 import {faArrowAltCircleDown, faCircle, faPowerOff} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import NativeSelect from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
-
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
     top: '30%',
     position: 'absolute',
     background: '#d3d3d3'
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(1),
   },
   paper: {
     color: theme.palette.text.secondary,
@@ -39,12 +42,15 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
   },
   selectOptions : {
-    padding: 20
+    padding: 6,
   },
   application: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
+  }, 
+  selected : {
+    backgroundColor: '#77ad65 !important'
   }
 }));
 
@@ -57,6 +63,7 @@ const SelectInput = withStyles(theme => ({
   input: {
     borderRadius: 32,
     position: 'relative',
+    minWidth: 90,
     backgroundColor: theme.palette.background.paper,
     border: '1px solid #ced4da',
     fontSize: '0.9em',
@@ -75,9 +82,9 @@ export const UserCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  const [status, setStatus] = React.useState(10);
+  const [status, setStatus] = React.useState('Shorlisted');
 
-  const options = ["Selected", "In Interview", "Offered", "Joined", "On Hold", "Rejected"];
+  const options = ["Shorlisted", "In Interview", "Offered", "Joined", "On Hold", "Rejected"];
 
   const actions = ["View Profile", "Screening Response", "Send Messages", "Schedule Interviews", "View Activities"];
  
@@ -160,11 +167,12 @@ export const UserCard = () => {
                     <NativeSelect
                        value={status}
                        onChange={handleChange}
+                       displayEmpty className={classes.selectEmpty}
                        input={<SelectInput key="1" />}
                        >
                          {
                            options.map((action)=>{
-                             return  <option key={`${action}`} className={classes.selectOptions} value={`${action}`}>{action}</option>
+                             return  <MenuItem classes={{selected : classes.selected}} key={`${action}`} className={classes.selectOptions} value={`${action}`}>{action}</MenuItem>
                            })
                          }
                     </NativeSelect>

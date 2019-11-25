@@ -13,10 +13,10 @@ let theme = createMuiTheme({
         }
     },
     overrides: {
-        MuiNativeSelect : {
-            root : {
-                '& option'  : {
-                    background: 'red'
+        MuiListItem : {
+            button: {
+                '&:hover' : {
+                    background: '#b1c9a9 !important'
                 }
             }
         }
